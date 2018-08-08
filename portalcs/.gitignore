@@ -1,12 +1,12 @@
 # App artifacts
 /cover
 /*.ez
- *.beam
- *.swo
- *.swp
- _build
- /db
- /deps
+*.beam
+*.swo
+*.swp
+_build
+/db
+/deps
 /*.ez
 
 # Generated on crash by the VM

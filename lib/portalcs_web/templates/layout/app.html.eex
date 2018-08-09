@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hello Portalcs!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar is-white topNav">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="../">
+            <img src="../images/bulma.png" width="112" height="28">
+          </a>
+          <div class="navbar-burger burger" data-target="topNav">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div id="topNav" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="/">Home</a>
+            <a class="navbar-item" href="landing.html">Landing</a>
+            <a class="navbar-item" href="blog.html">Blog</a>
+            <a class="navbar-item" href="instaAlbum.html">Album</a>
+            <a class="navbar-item" href="kanban[search].html">Kanban</a>
+            <a class="navbar-item" href="search.html">Search</a>
+            <a class="navbar-item" href="tabs.html">Tabs</a>
+          </div>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="field is-grouped">
+                <%= if has_user(@conn) do %>
+                  <p class="control">
+                    <%= link "Sign out", to: session_path(@conn, :delete), method: "delete", class: "button is-small is-info is-outlined" %>
+                  </p>
+                <% else %>
+                  <p class="control">
+                  <a class="button is-small" href="/registrations/new">
+                    <span class="icon">
+                      <i class="fa fa-user-plus"></i>
+                    </span>
+                    <span>
+                      Register
+                    </span>
+                  </a>
+                  </p>
+                  <p class="control">
+                  <a class="button is-small is-info is-outlined" href="/sessions/new">
+                    <span class="icon">
+                      <i class="fa fa-user"></i>
+                    </span>
+                    <span>Login</span>
+                  </a>
+                  <%= end %>
+                  </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <nav class="navbar is-white">
+      <div class="container">
+        <div class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item is-active" href="#">Popular</a>
+            <a class="navbar-item" href="#">Recent</a>
+            <a class="navbar-item" href="#">Rising</a>
+          </div>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <input class="input" type="search" placeholder="Search forum...">
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+      <main role="main">
+      <%= render @view_module, @view_template, assigns %>
+      </main>
+
+    </div> <!-- /container -->
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-4 is-offset-4">
+        <h3 class="title has-text-grey">Login</h3>
+        <p class="subtitle has-text-grey">Please login to proceed.</p>
+        <div class="box">
+          <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f  -> %>
+
+            <% login_field = Coherence.Config.login_field %>
+            <div class="field">
+              <div class="control">
+
+                <%= required_label f, login_field, class: "label" %>
+                <%= text_input f, login_field, class: "input", required: "" %>
+                <%= error_tag f, login_field %>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <%= required_label f, dgettext("coherence", "Password"), class: "label" %>
+                <%= password_input f, :password, class: "input", required: "" %>
+                <%= error_tag f, :password %>
+              </div>
+            </div>
+
+            <%= if @remember do %>
+
+              <div class="field">
+                <div class="control">
+                  <input type="checkbox"  name="remember" id="remember">
+                  <label for="remember"><%= dgettext "coherence", "Remember Me?" %></label>
+                </div>
+              </div>
+              <br />
+            <% end %>
+
+            <div class="field">
+              <div class="control">
+                <%= submit dgettext("coherence", "Sign In"), class: "button is-block is-info is-large is-fullwidth" %>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <%= coherence_links(@conn, :new_session) %>
+              </div>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
